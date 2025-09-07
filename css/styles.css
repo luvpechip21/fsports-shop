@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sản phẩm Air Force</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+body { font-family: 'Be Vietnam Pro', sans-serif; margin:0; }
+
+.sticky-footer {
+position: fixed; bottom: 0; left: 0; width: 100%; background: #fff;
+display: flex; align-items: center; border-top: 1px solid #ddd;
+z-index: 9999; padding: 8px;
+}
+.footer-icon {
+width: 60px; text-align: center; font-size: 12px; color: #000; text-decoration: none;
+}
+.footer-icon img { width: 22px; height: 22px; margin-bottom: 4px; }
+.footer-btn {
+flex: 1; margin-left: 12px; height: 48px; background: linear-gradient(90deg, #FF512F, #FF7B2F);
+color: #fff; font-weight: 700; font-size: 18px; border: none; cursor: pointer;
+border-radius: 10px; transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.footer-btn:hover { transform: scale(1.03); opacity: 0.95; }
+
+.overlay {
+position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+background: rgba(0,0,0,0.5); display: none; z-index: 9998;
+}
+#slideForm {
+position: fixed; bottom: -100%; left: 0; width: 100%; background: #fff;
+transition: bottom 0.4s ease; padding: 16px; z-index: 10000;
+max-height: 90vh; overflow-y: auto; border-radius: 12px 12px 0 0;
+}
+#closeBtn {
+position: absolute; top: 12px; right: 16px; background: none; border: none;
+font-size: 28px; font-weight: bold; color: #333; cursor: pointer;
+}
+.price-box { text-align: center; margin-bottom: 12px; }
+.price-old { text-decoration: line-through; color: #888; margin-right: 6px; font-size: 14px; }
+.price-new { font-size: 22px; font-weight: bold; color: #FF512F; }
+
+.gift-box {
+text-align: center; background: #fff7f3; padding: 10px;
+border-radius: 10px; margin-bottom: 12px;
+}
+.gift-box h4 { color: #FF512F; font-size: 15px; margin-bottom: 8px; }
+.gift-grid {
+display: grid; grid-template-columns: repeat(2, 1fr);
+gap: 6px; font-size: 14px; color: #444;
+}
+
+.variant-title { font-weight: bold; margin-top: 10px; }
+.variant-row {
+display: flex; gap: 10px; align-items: center;
+border: 1px solid #eee; padding: 10px; margin: 6px 0; border-radius: 8px;
+}
+.variant-row img {
+width: 60px; height: 60px; object-fit: cover; border-radius: 6px;
+}
+.variant-info { flex: 1; font-size: 14px; }
+.quantity-box {
+display: flex; gap: 6px; align-items: center;
+}
+.quantity-box button {
+width: 28px; height: 28px; font-weight: bold;
+border: 1px solid #ccc; background: #f2f2f2; border-radius: 6px;
+}
+.quantity-box input {
+width: 36px; text-align: center; border: 1px solid #ccc; border-radius: 6px;
+padding: 4px; font-size: 14px;
+}
+
+.form-input input, .form-input textarea {
+width: 100%; padding: 10px; margin-bottom: 10px;
+border: 1px solid #ccc; border-radius: 6px; font-size: 14px;
+}
+
+.submit-btn {
+width: 100%; padding: 12px; background: #FF512F;
+color: white; font-weight: bold; border: none; border-radius: 10px;
+font-size: 16px; transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.submit-btn:hover { transform: scale(1.03); opacity: 0.95; }
+
+#confirmPopup {
+position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+background: white; padding: 24px; border-radius: 16px;
+box-shadow: 0 6px 20px rgba(0,0,0,0.25); display: none;
+text-align: center; z-index: 10001; width: 90%; max-width: 360px;
+}
+#confirmPopup.show { display: block; }
+#confirmPopup .title {
+font-size: 20px; font-weight: bold; margin-bottom: 12px; color: #FF512F;
+}
+#confirmPopup .sub {
+font-size: 15px; line-height: 1.4; color: #333; margin-bottom: 10px;
+}
+#confirmPopup .ok {
+font-size: 14px; font-weight: bold; color: #000;
+}
+#closeThanksBtn {
+position: absolute; top: 8px; right: 12px; background: none; border: none;
+font-size: 20px; color: #555; cursor: pointer;
+}
+</style>
+
+<!-- Facebook Pixel: PHẦN 2 sẽ tiếp tục tại đây -->
+</head>
+<body>
+
+<!-- ✅ Sticky Footer -->
+<div class="sticky-footer">
+<a class="footer-icon" href="tel:0947420361">
+<img src="https://img.icons8.com/ios-filled/24/000000/phone.png" alt=""><br>Gọi
+</a>
+<a class="footer-icon" href="https://m.me/Lifestyle.Fsport">
+<img src="https://img.icons8.com/ios-filled/24/000000/facebook-messenger.png" alt=""><br>Chat
+</a>
+<button id="btn-atc" class="footer-btn">MUA NGAY</button>
+</div>
+
+<!-- ✅ Overlay + Form -->
+<div id="overlay" class="overlay"></div>
+
+<div id="slideForm">
+<button id="closeBtn" onclick="toggleForm()">×</button>
+
+<div class="price-box">
+<span class="price-old" id="priceOld">₫3.100.000</span>
+<span class="price-new" id="totalPrice">₫1.860.000</span>
+</div>
+
+<div class="gift-box">
+<h4>🎁 QUÀ TẶNG KÈM</h4>
+<div class="gift-grid">
+<span>✔ Túi bảo vệ vợt</span>
+<span>✔ Quấn cán vợt xịn</span>
+<span>✔ Bóng thi đấu</span>
+<span>✔ Dán viền</span>
+<span>✔ Xịt vệ sinh mặt vợt</span>
+</div>
+</div>
+
+<div class="variant-title">Chọn sản phẩm và số lượng</div>
+<div id="variantArea"></div>
+
+<div class="form-input">
+<input type="text" id="fullname" placeholder="Họ và tên">
+<input type="tel" id="phone" placeholder="Số điện thoại">
+<textarea id="address" placeholder="Địa chỉ nhận hàng"></textarea>
+</div>
+
+<button class="submit-btn" id="submitBtn">ĐẶT HÀNG NGAY</button>
+</div>
+
+<!-- ✅ Popup cảm ơn -->
+<div id="confirmPopup">
+<button id="closeThanksBtn">×</button>
+<div class="title">🎉 CẢM ƠN BẠN!</div>
+<div class="sub">Đơn hàng của bạn đã được xác nhận.<br>Chúng tôi sẽ giao hàng sớm nhất!</div>
+<div class="ok">Hotline: 094.7420.361</div>
+</div>
+
+<!-- ✅ SCRIPT -->
+<script>
+// =======================
+// PIXEL INIT
+// =======================
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){
+n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;
+s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+fbq('init', '2551563688514905'); // Pixel chính
+fbq('init', '1738204417066160', {}, {agent:'plmulti'}); // Pixel phụ
+fbq('track', 'PageView');
+
+// ViewContent sau 4s (nếu tab đang active)
+setTimeout(() => {
+if (!document.hidden) {
+const data = { content_name: 'Trang sản phẩm Air Force', content_type: 'product_group' };
+fbq('track', 'ViewContent', data);
+fbq('trackSingle', '1738204417066160', 'ViewContent', data);
+}
+}, 4000);
+
+// =======================
+// DATA
+// =======================
+const variantList = [
+{ Tên: "Air Force 3K", Giá: 1300000, GiáGốc: 2200000, Ảnh: "https://i.postimg.cc/FHTJSW3h/Tuns-sports-template2.jpg" },
+{ Tên: "Air Force T700", Giá: 1200000, GiáGốc: 2100000, Ảnh: "https://i.postimg.cc/Mp6Qv2cs/Tuns-sports-template1.jpg" }
+];
+
+// =======================
+// STATE & HELPERS
+// =======================
+let _hasFiredATC = false;
+let _lastATCEventId = null;
+
+function genEventId(prefix='evt') {
+// đủ unique cho mục đích đối chiếu: time + random
+return `${prefix}_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`;
+}
+
+function formatPrice(v){ return (v||0).toLocaleString("vi-VN")+"₫"; }
+
+function getCartSnapshot() {
+const items = [];
+let total = 0, oldTotal = 0, totalQty = 0;
+variantList.forEach((v, i) => {
+const raw = document.getElementById(`qty${i}`)?.value;
+const qty = Math.max(0, parseInt(raw || "0"));
+if (qty > 0) {
+items.push({ id: `SP-${i+1}`, name: v.Tên, quantity: qty, item_price: v.Giá });
+total += qty * v.Giá;
+oldTotal += qty * v.GiáGốc;
+totalQty += qty;
+}
+});
+return { items, total, oldTotal, totalQty };
+}
+
+// Bắn ATC đúng chuẩn: chỉ khi user đã chọn >=1 sp và CHỈ LẦN ĐẦU
+function maybeFireATC() {
+if (_hasFiredATC) return;
+const { items, total, totalQty } = getCartSnapshot();
+if (totalQty > 0) {
+_hasFiredATC = true;
+_lastATCEventId = genEventId('atc');
+
+const pixelData = {
+value: total,
+currency: 'VND',
+contents: items.map(it => ({ id: it.id, quantity: it.quantity, item_price: it.item_price })),
+content_type: 'product',
+event_id: _lastATCEventId
+};
+fbq('track', 'AddToCart', pixelData);
+fbq('trackSingle', '1738204417066160', 'AddToCart', pixelData);
+// console.log('ATC fired with event_id:', _lastATCEventId);
+}
+}
+
+// =======================
+// UI HANDLERS
+// =======================
+function toggleForm(){
+const form = document.getElementById("slideForm");
+const overlay = document.getElementById("overlay");
+const footer = document.querySelector(".sticky-footer");
+const isOpen = form.style.bottom === "0px";
+form.style.bottom = isOpen ? "-100%" : "0px";
+overlay.style.display = isOpen ? "none" : "block";
+footer.style.display = isOpen ? "flex" : "none";
+// Khi mở form lần đầu, reset hiển thị giá = 0 cho đúng
+if (!isOpen && document.getElementById("totalPrice")) {
+updatePrice(); // đảm bảo đồng bộ số hiển thị
+}
+}
+
+document.getElementById("overlay").addEventListener("click", toggleForm);
+document.getElementById("btn-atc").addEventListener("click", () => {
+toggleForm();
+renderVariants(); // mở form rồi mới render biến thể
+// KHÔNG bắn ATC ở đây nữa (đợi user chọn số lượng)
+});
+
+// ESC để đóng form
+document.addEventListener('keydown', (e) => {
+if (e.key === 'Escape') {
+const form = document.getElementById("slideForm");
+if (form.style.bottom === "0px") toggleForm();
+}
+});
+
+function renderVariants(){
+const area = document.getElementById("variantArea");
+area.innerHTML = '';
+variantList.forEach((v, i) => {
+const row = document.createElement("div");
+row.className = "variant-row";
+row.innerHTML = `
+<img src="${v.Ảnh}" alt="">
+<div class="variant-info">${v.Tên}<br><small>${formatPrice(v.Giá)}</small></div>
+<div class="quantity-box">
+<button type="button" onclick="changeQty(${i}, -1)">-</button>
+<input type="number" id="qty${i}" value="0" min="0" inputmode="numeric">
+<button type="button" onclick="changeQty(${i}, 1)">+</button>
+</div>
+`;
+area.appendChild(row);
+});
+
+// Lắng nghe nhập tay để vẫn tính tiền + kiểm ATC
+variantList.forEach((_, i) => {
+const ip = document.getElementById(`qty${i}`);
+ip.addEventListener('input', () => { updatePrice(); maybeFireATC(); });
+ip.addEventListener('change', () => { updatePrice(); maybeFireATC(); });
+});
+
+// Set giá ban đầu = 0 (chưa chọn)
+document.getElementById("totalPrice").innerText = formatPrice(0);
+document.getElementById("priceOld").innerText = formatPrice(0);
+}
+
+window.changeQty = function(i, delta){
+const input = document.getElementById(`qty${i}`);
+const next = Math.max(0, (parseInt(input.value || "0") + delta));
+input.value = next;
+updatePrice();
+maybeFireATC(); // chỉ ATC lần đầu khi từ 0 -> >0
+}
+
+function updatePrice(){
+const { total, oldTotal } = getCartSnapshot();
+document.getElementById("totalPrice").innerText = formatPrice(total);
+document.getElementById("priceOld").innerText = formatPrice(oldTotal);
+}
+
+// =======================
+// SUBMIT ORDER
+// =======================
+const submitBtn = document.getElementById("submitBtn");
+submitBtn.addEventListener("click", async () => {
+const fullname = document.getElementById("fullname").value.trim();
+const phone = document.getElementById("phone").value.trim();
+const address = document.getElementById("address").value.trim();
+
+if (!fullname || !phone || !address) {
+alert("⚠️ Vui lòng điền đầy đủ thông tin!");
+return;
+}
+
+const { items, total, totalQty } = getCartSnapshot();
+if (totalQty === 0) {
+alert("⚠️ Vui lòng chọn ít nhất 1 sản phẩm!");
+return;
+}
+
+// Sinh purchase_event_id ngay trước khi gửi
+const purchaseEventId = genEventId('purchase');
+
+const payload = {
+name: fullname,
+phone: phone,
+address: address,
+variant: items.map(it => `${it.name} x ${it.quantity}`).join(", "),
+amount: formatPrice(total), // dùng cho email
+total_raw: total, // để ghi Sheet/sum
+purchase_event_id: purchaseEventId,
+atc_event_id: _lastATCEventId || null
+};
+
+// Chống double submit
+submitBtn.disabled = true;
+submitBtn.textContent = "Đang gửi...";
+
+try {
+const res = await fetch("https://hook.us2.make.com/7vq13lzphuycaovw5q7e3x6ah3qjpcwo", {
+method: "POST",
+headers: { "Content-Type": "application/json" },
+body: JSON.stringify(payload)
+});
+
+if (!res.ok) {
+throw new Error(`Make.com HTTP ${res.status}`);
+}
+
+// Gửi Purchase (chỉ khi Make.com trả về thành công)
+const pixelData = {
+value: total,
+currency: 'VND',
+contents: items.map(it => ({ id: it.id, quantity: it.quantity, item_price: it.item_price })),
+content_type: 'product',
+event_id: purchaseEventId
+};
+fbq('track', 'Purchase', pixelData);
+fbq('trackSingle', '1738204417066160', 'Purchase', pixelData);
+
+toggleForm();
+const popup = document.getElementById("confirmPopup");
+popup.classList.add("show");
+setTimeout(() => popup.classList.remove("show"), 6000);
+
+} catch (err) {
+console.error("❌ Gửi đơn hàng lỗi:", err);
+alert("❌ Có lỗi khi gửi đơn hàng. Vui lòng thử lại sau.");
+} finally {
+submitBtn.disabled = false;
+submitBtn.textContent = "ĐẶT HÀNG NGAY";
+}
+});
+
+// Đóng popup cảm ơn
+document.getElementById("closeThanksBtn").addEventListener("click", () => {
+document.getElementById("confirmPopup").classList.remove("show");
+});
+</script>
+
+</body>
+</html>

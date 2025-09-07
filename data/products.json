@@ -1,0 +1,53 @@
+{
+  "flash_ids": ["bag01","ball01","clean01","pad01"],
+  "products": [
+    {
+      "id": "pad01",
+      "name": "Vợt Pickleball Air Force 3K",
+      "price": 1290000,
+      "old": 1500000,
+      "sold": 321,
+      "img": "https://images.unsplash.com/photo-1578535438176-35d9b3334a0d?q=80&w=800&auto=format&fit=crop"
+    },
+    {
+      "id": "pad02",
+      "name": "Vợt Pickleball Phantom Gen4",
+      "price": 2190000,
+      "old": 2690000,
+      "sold": 188,
+      "img": "https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=800&auto=format&fit=crop"
+    },
+    {
+      "id": "bag01",
+      "name": "Túi Pickleball Pro 45L",
+      "price": 269000,
+      "old": 425000,
+      "sold": 502,
+      "img": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=800&auto=format&fit=crop"
+    },
+    {
+      "id": "ball01",
+      "name": "Bóng Pickleball (Set 3 quả)",
+      "price": 9000,
+      "old": 50000,
+      "sold": 1112,
+      "img": "https://images.unsplash.com/photo-1534159460-5f4b37f87b38?q=80&w=800&auto=format&fit=crop"
+    },
+    {
+      "id": "clean01",
+      "name": "Dung dịch vệ sinh mặt vợt",
+      "price": 99000,
+      "old": 179000,
+      "sold": 862,
+      "img": "https://images.unsplash.com/photo-1526318472351-c75fcf070305?q=80&w=800&auto=format&fit=crop"
+    },
+    {
+      "id": "strap01",
+      "name": "Grip quấn kiểu tennis",
+      "price": 39000,
+      "old": 69000,
+      "sold": 941,
+      "img": "https://images.unsplash.com/photo-1528701800489-20be0b1d2a07?q=80&w=800&auto=format&fit=crop"
+    }
+  ]
+}
