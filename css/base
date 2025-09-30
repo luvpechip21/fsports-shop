@@ -1,0 +1,343 @@
+/* === Reset font và fix zoom iOS === */
+html, body, input, textarea {
+  -webkit-text-size-adjust: 100%;
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #222;
+}
+
+input, textarea, select {
+  font-size: 16px !important;
+}
+
+/* === Form Popup === */
+#slideForm {
+  position: fixed;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  background: white;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.15);
+  transition: bottom 0.4s ease;
+  padding: 16px;
+  z-index: 9999;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+/* === Close Button === */
+#closeBtn {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  z-index: 10000;
+}
+
+/* === Top Info Box === */
+.top-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+#variantImg {
+  width: 110px;
+  height: 170px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.price-old {
+  text-decoration: line-through;
+  color: #888;
+  font-size: 14px;
+}
+
+.price-new {
+  font-size: 22px;
+  font-weight: bold;
+  color: #d43752;
+  margin: 4px 0;
+}
+
+#voucherLabel {
+  font-size: 14px;
+  color: #388e3c;
+  margin-top: 6px;
+}
+
+#voucherPrice {
+  font-size: 18px;
+  font-weight: bold;
+  color: #e53935;
+  margin-top: 2px;
+}
+
+/* === Variant Grid === */
+.variant-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.variant-btn {
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  padding: 2px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 12px;
+  transition: 0.2s;
+  font-weight: bold;
+}
+.variant-btn img {
+  width: 100%;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 2px;
+}
+.variant-btn.active {
+  border-color: #d43752;
+}
+
+/* === Form Input / Submit === */
+input, textarea {
+  width: 100%;
+  padding: 6px;
+  margin-bottom: 6px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+}
+textarea {
+  resize: none;
+  height: 60px;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 10px;
+  background: #d43752;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.hidden {
+  display: none !important;
+}
+/* === Video Overlay Popup === */
+#videoOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+.video-inner {
+  width: 90%;
+  max-width: 480px;
+  aspect-ratio: 9 / 16;
+  background: #000;
+  position: relative;
+}
+#videoOverlay iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+#videoOverlay button {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  z-index: 10001;
+}
+.video-wrapper {
+  position: relative;
+}
+.video-overlay {
+  position: absolute;
+  inset: 0;
+  cursor: pointer;
+  z-index: 10;
+}
+body {
+  background-color: #f9f9f9;
+}
+
+.product-hero {
+  background-color: #ffffff;
+  padding: 2px 2px;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .page-container {
+    padding: 0 8px;
+    max-width: 1180px;
+    margin: auto;
+    box-sizing: border-box;
+  }
+}
+
+.shipping-wrapper {
+  border-top: 1px solid #f9f9f9;
+  border-bottom: 1px solid #f9f9f9;
+  padding: 10px 0;
+  margin: 16px 0;
+}
+
+.shipping-info {
+  font-size: 14px;
+  color: #333;
+  font-family: 'Be Vietnam Pro', sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 12px;
+}
+
+.shipping-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.shipping-line .icon {
+  font-size: 16px;
+  flex-shrink: 0;
+}
+/* ===============================
+   🔹 Collection Product Slider 🔹
+   Tiền tố: cps-
+   =============================== */
+
+/* ✅ Container canh giữa */
+.cps-container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 12px;
+  box-sizing: border-box;
+}
+
+/* ✅ Tiêu đề từng vùng sản phẩm */
+.cps-section-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 16px 0 8px;
+  font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+/* ✅ Slider bọc vùng cuộn ngang */
+.cps-slider {
+  overflow-x: auto;
+  padding: 8px 0 12px;
+}
+
+/* ✅ Track vuốt ngang, scroll-snap */
+.cps-track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 31.5%;
+  gap: 8px;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 0 2px;
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+.cps-track::-webkit-scrollbar {
+  display: none;
+}
+
+/* ✅ Từng sản phẩm */
+.cps-item {
+  scroll-snap-align: start;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid #eee;
+}
+.cps-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+/* ✅ Ảnh sản phẩm */
+.cps-item img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+  border-radius: 12px 12px 0 0;
+  background: #f9f9f9;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+/* ✅ Thông tin (text) sản phẩm */
+.cps-info {
+  padding: 8px;
+  font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+/* ✅ Tiêu đề sản phẩm */
+.cps-title {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+  margin: 0 0 6px;
+  height: 2.6em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/* ✅ Giá sản phẩm */
+.cps-price {
+  font-size: 14px;
+  font-weight: 600;
+  color: #e53935;
+}
+.cps-slider-wrapper {
+  position: relative;
+}
+.cps-fade-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 24px;
+  height: 100%;
+  background: linear-gradient(to right, rgba(255,255,255,0), #fff);
+  pointer-events: none;
+}
