@@ -1,0 +1,112 @@
+/* 🎁 Popup voucher chính */
+.voucher-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.6);
+  background: linear-gradient(to bottom right, #e6f5fb, #d4effa);
+  padding: 28px 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 16px rgba(0,0,0,0.2);
+  z-index: 9999;
+  text-align: center;
+  width: 280px;
+  max-width: 85%;
+  border: 1px solid #a4d4ec;
+  opacity: 0;
+  animation: zoomIn 1s ease forwards;
+}
+
+@keyframes zoomIn {
+  0% {
+    transform: translate(-50%, -50%) scale(0.6);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+.voucher-popup h2 {
+  color: #0b7fab;
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+
+.voucher-popup p {
+  font-size: 14px;
+  margin-bottom: 16px;
+  color: #333;
+}
+
+.voucher-popup button {
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 10px 22px;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+/* ❌ Nút đóng popup */
+.voucher-close {
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  font-size: 28px;
+  cursor: pointer;
+  color: #666;
+  font-weight: bold;
+}
+.voucher-close:hover {
+  color: #000;
+}
+
+/* 📌 Ảnh nổi bên phải - VOUCHER 30K */
+#voucherFloatIcon {
+  position: fixed;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 9998;
+  cursor: pointer;
+  animation: bounce 2s infinite;
+}
+
+/* ⚙️ Container cho ảnh và nút đóng */
+.voucher-float-img-wrapper {
+  position: relative;
+}
+.voucher-float-img-wrapper img {
+  width: 60px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 12px rgba(255, 105, 0, 0.3);
+}
+
+/* ❌ Nút tắt ảnh nổi */
+.voucher-float-close {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: black;
+  color: white;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  line-height: 18px;
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
+}
+
+/* 🎯 Animation nhẹ cho icon nổi */
+@keyframes bounce {
+  0%, 100% { transform: translateY(-50%) translateY(0); }
+  50% { transform: translateY(-50%) translateY(-8px); }
+}

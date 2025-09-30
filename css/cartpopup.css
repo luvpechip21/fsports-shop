@@ -1,0 +1,292 @@
+/* ========== POPUP GIỎ HÀNG ========== */
+#cartPopup {
+  position: fixed;
+  inset: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+.cart-popup-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.cart-popup-content {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  max-height: 77vh;          /* Giới hạn chiều cao */
+  overflow-y: scroll;        /* Luôn hiện thanh cuộn */
+  scrollbar-gutter: stable;
+  background: #fff;
+  padding: 16px;
+  padding-bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  scroll-padding-bottom: 80px;
+}
+
+#variantList {
+  flex-shrink: 0;
+}
+
+.cart-popup-content.animate-slideup {
+  animation: slideUp 0.3s ease-out forwards;
+  transform: translateY(100%);
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ========== NÚT ĐÓNG ========== */
+.cart-popup-close {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  font-size: 36px;
+  color: #000;
+  background: none;
+  border: none;
+  cursor: pointer;
+  line-height: 1;
+  z-index: 99999; /* Đảm bảo nằm trên cart icon */
+}
+
+/* ========== ẢNH TO + GIÁ ========== */
+.product-header {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  align-items: flex-start;
+}
+
+#mainImage {
+  max-width: 150px;
+  max-height: 150px;
+  width: auto;
+  height: auto;
+  object-fit: contain;  /* Giúp ảnh vuông/chữ nhật đều hiển thị đủ */
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.product-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.product-name {
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.product-price {
+  display: flex;
+  flex-direction: column; /* ✅ Xếp giá theo chiều dọc */
+  gap: 2px;
+}
+
+.price-original {
+  color: #aaa;
+  text-decoration: line-through;
+  font-size: 13px; /* ✅ Nhỏ hơn, nằm trên */
+  line-height: 1;
+}
+
+.price-sale {
+  color: #e53935;
+  font-weight: bold;
+  font-size: 17px; /* ✅ To hơn, nằm dưới */
+  line-height: 1;
+}
+
+.product-variant-text {
+  font-size: 13px;
+  color: #444;
+  font-weight: normal;
+  margin-top: auto;
+  margin-bottom: 0;
+}
+
+/* ========== PHÂN LOẠI CHUNG ========== */
+.variant-group {
+  margin-bottom: 16px;
+}
+
+.variant-label {
+  font-size: 13px;       /* nhỏ lại để đồng bộ */
+  margin-bottom: 6px;
+  font-weight: 500;      /* nhẹ nhàng hơn 600 */
+}
+
+.variant-thumbnails,
+.variant-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* ========== STYLE DÙNG CHUNG ========== */
+.variant-thumb {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 14px;
+  font-size: 14px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  user-select: none;
+  box-sizing: border-box;
+}
+
+.variant-thumb.selected {
+  border: 2px solid #e53935;
+}
+
+/* ========== RIÊNG THUMBNAIL ========== */
+.variant-thumbnails .variant-thumb {
+  gap: 6px;
+  padding: 4px 8px;
+  height: 40px;
+}
+
+.variant-thumb img {
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.variant-title {
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ========== SỐ LƯỢNG ========== */
+.quantity-wrapper {
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 8px;
+  margin-top: 12px;
+  font-size: 14px;
+  flex-wrap: nowrap;
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  height: 20px;           /* ✅ Chiều cao nhỏ lại */
+  border: 1px solid #ccc; /* ✅ Viền xám */
+  border-radius: 6px;
+  background: #fff;       /* ✅ Nền trắng */
+  overflow: hidden;
+}
+
+.quantity-control button {
+  background: transparent;
+  border: none;
+  width: 24px;
+  height: 100%;
+  font-size: 16px;
+  font-weight: normal; /* ✅ Không in đậm */
+  color: #000;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+.quantity-control input {
+  width: 30px;
+  height: 100%;
+  text-align: center;
+  border: none;
+  background: transparent;
+  color: #111;
+  font-size: 14px;
+  font-weight: normal; /* ✅ Không in đậm */
+  appearance: textfield;
+  padding: 0;
+}
+
+.quantity-control input::-webkit-outer-spin-button,
+.quantity-control input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.quantity-control button:first-child {
+  border-right: 1px solid #ddd;
+}
+
+.quantity-control button:last-child {
+  border-left: 1px solid #ddd;
+}
+
+/* ========== NÚT THÊM VÀO GIỎ HÀNG ========== */
+.cart-submit-btn {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 14px;
+  background: #e53935;
+  color: #fff;
+  font-weight: bold;
+  font-size: 15px;
+  border: none;
+  border-radius: 0;
+  z-index: 9999;
+}
+
+.cart-submit-btn:hover {
+  background: #d32f2f;
+}
+
+/* ========== VOUCHER TAG ========== */
+.voucher-tag {
+  display: inline-block;
+  background-color: rgba(0, 160, 230, 0.6);
+  color: white;
+  font-size: 9px;
+  padding: 2px 6px;
+  margin-left: 6px;
+  border-radius: 4px;
+  vertical-align: middle;
+}
+
+.sizenote {
+  font-style: italic;
+  font-weight: bold;
+  color: #E53935;
+  font-size: 12px;
+  margin-left: 4px;
+}
+
+.variant-group input[type="text"]::placeholder {
+  color: #888;        /* nhạt hơn một chút */
+  font-size: 13px;    /* nhỏ hơn */
+  font-style: italic; /* in nghiêng */
+}
